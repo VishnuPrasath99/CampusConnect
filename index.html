@@ -1,0 +1,31 @@
+      </div>
+      <div class="screen-content" style="padding:16px;display:flex;flex-direction:column;gap:10px" id="notifications-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div><!-- /#app-shell -->
+</div><!-- /#phone-frame -->
+<script src="app.js"></script>
+<script>
+  // Live clock in status bar
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    document.getElementById('status-time').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 60000);
+  // Init announcement preview on home
+  document.addEventListener('DOMContentLoaded', () => {
+    const preview = document.getElementById('home-ann-preview');
+    if (preview) {
+      ANNOUNCEMENTS.slice(0,2).forEach(ann => {
+        preview.appendChild(renderAnnCard(ann));
+        preview.lastChild.style.marginBottom = '10px';
+      });
+    }
+  });
+</script>
+</body>
+</html>
