@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>CampusConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!--  PHONE FRAME                                                  -->
+<!-- ============================================================ -->
+<div id="phone-frame">
+  <div id="status-bar">
+    <span id="status-time">12:00</span>
+    <span id="status-icons">📶 🔋</span>
+  </div>
+
+  <div id="app-shell">
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 1: SPLASH                                         -->
+    <!-- ======================================================== -->
+    <div class="screen active" id="splash-screen">
+      <div class="splash-bg">
+        <div class="splash-rings">
+          <div class="splash-ring ring-1"></div>
+          <div class="splash-ring ring-2"></div>
+          <div class="splash-ring ring-3"></div>
+        </div>
+        <div class="splash-logo-wrap">
+          <div class="splash-logo-outer">
+            <div class="splash-logo-inner">🎓</div>
+          </div>
+        </div>
+        <div class="splash-title">CampusConnect</div>
+        <div class="splash-subtitle">Your Campus. Your Community.<br>Your Events.</div>
+        <div class="splash-loader-wrap">
+          <div class="splash-loader-bar">
+            <div class="splash-loader-fill"></div>
+          </div>
+          <div class="splash-loader-text">Loading your campus...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 2: LOGIN                                          -->
+    <!-- ======================================================== -->
+    <div class="screen" id="login-screen">
+      <div class="login-hero">
+        <div class="login-hero-emoji">🎓</div>
+        <div class="login-logo">CampusConnect</div>
+        <div class="login-hero-sub">Stay connected with campus life</div>
+        <div class="login-hero-shape"></div>
+      </div>
+      <div class="screen-content login-form-container">
+        <div class="login-welcome">Welcome Back 👋</div>
+        <div class="login-welcome-sub">Stay connected with everything happening on your campus.</div>
+
+        <form id="login-form">
+          <div class="input-group">
+            <div class="input-label">College Email</div>
+            <div class="input-with-icon">
+              <span class="input-icon">📧</span>
+              <input id="login-email" class="input-field" type="email" placeholder="you@college.edu" />
+            </div>
+            <div class="error-text" id="login-email-err" style="display:none"></div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-label">Password</div>
+            <div class="input-with-icon">
+              <span class="input-icon">🔒</span>
+              <input id="login-pw" class="input-field" type="password" placeholder="Enter password" />
+              <button type="button" class="toggle-password" id="toggle-pw-btn" onclick="togglePassword('login-pw','toggle-pw-btn')">👁️</button>
+            </div>
+            <div class="error-text" id="login-pw-err" style="display:none"></div>
+          </div>
+
+          <div class="login-options-row">
+            <label class="remember-me">
+              <input type="checkbox" /> Remember me
+            </label>
+            <span class="forgot-link" onclick="alert('Password reset link sent! (demo)')">Forgot Password?</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-20" id="login-btn">Login</button>
+        </form>
+
+        <div class="login-divider"><span>or continue with</span></div>
+        <button class="btn btn-outline" onclick="showScreen('home-screen');initHomeScreen()">
+          <span>🏫</span> Continue as Guest
+        </button>
+
+        <div class="login-signup mt-20">
+          Don't have an account? <a onclick="showScreen('signup-screen')">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 3: SIGN UP                                        -->
+    <!-- ======================================================== -->
+    <div class="screen" id="signup-screen">
+      <div class="signup-header-area">
+        <div class="screen-header" style="background:transparent;border:none;padding-top:8px">
+          <button class="header-back-btn" style="background:rgba(255,255,255,0.2);color:white" onclick="goBack()">←</button>
+          <span class="header-title" style="color:white;font-size:16px">Create Account</span>
+        </div>
+        <div style="text-align:center;padding:0 20px 20px">
+          <div class="signup-logo">CampusConnect</div>
+          <div class="signup-tagline">Join your campus community</div>
+        </div>
+      </div>
+      <div class="screen-content signup-form-container">
+        <div class="signup-title">Let's get you started 🚀</div>
+        <div class="signup-subtitle">Fill in your details to create your student account.</div>
+
+        <form id="signup-form">
+          <div class="input-group">
+            <div class="input-label">Full Name</div>
+            <div class="input-with-icon">
+              <span class="input-icon">👤</span>
+              <input class="input-field" type="text" placeholder="Vishnu S" />
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="input-label">College Email</div>
+            <div class="input-with-icon">
+              <span class="input-icon">📧</span>
+              <input class="input-field" type="email" placeholder="vishnu@college.edu" />
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="input-group" style="flex:1">
+              <div class="input-label">Student ID</div>
+              <input class="input-field" type="text" placeholder="21CS001" />
+            </div>
+            <div class="input-group" style="flex:1">
+              <div class="input-label">Year</div>
+              <select class="select-field">
+                <option value="">Year</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>4th Year</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="input-label">Department</div>
+            <select class="select-field">
+              <option value="">Select Department</option>
+              <option>Computer Science & Engineering</option>
+              <option>Information Technology</option>
+              <option>Electronics & Communication</option>
+              <option>Mechanical Engineering</option>
+              <option>Civil Engineering</option>
+              <option>Business Administration</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <div class="input-label">Password</div>
+            <div class="input-with-icon">
+              <span class="input-icon">🔒</span>
+              <input class="input-field" type="password" placeholder="Create password" />
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="input-label">Confirm Password</div>
+            <div class="input-with-icon">
+              <span class="input-icon">🔒</span>
+              <input class="input-field" type="password" placeholder="Repeat password" />
+            </div>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="terms-check" />
+            <label class="checkbox-label" for="terms-check">I agree to the <span style="color:var(--primary);font-weight:600">Terms of Service</span> and <span style="color:var(--primary);font-weight:600">Privacy Policy</span></label>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-8" id="signup-btn">Create Account</button>
+        </form>
+        <div class="signup-login">Already have an account? <a onclick="goBack()">Login</a></div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 4: HOME DASHBOARD                                 -->
+    <!-- ======================================================== -->
+    <div class="screen" id="home-screen">
+      <div class="home-header">
+        <div class="home-header-top">
+          <div>
+            <div class="home-greeting">Good Morning, Vishnu 👋</div>
+            <div class="home-greeting-sub">Here's what's happening on your campus.</div>
+          </div>
+          <div class="home-avatar" onclick="showScreen('notifications-screen');initNotificationsScreen()">
+            <span>🔔</span>
+            <div class="notif-dot"></div>
+          </div>
+        </div>
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input id="home-search" type="text" placeholder="Search events, workshops, clubs..." />
+        </div>
+      </div>
+
+      <div class="screen-content home-content">
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="stat-card">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Events This Month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Registered</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Clubs Joined</div>
+          </div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="categories-scroll">
+          <button class="category-pill active" data-cat="All">🗓️ All</button>
+          <button class="category-pill" data-cat="Events">🎉 Events</button>
+          <button class="category-pill" data-cat="Workshop">🎨 Workshops</button>
+          <button class="category-pill" data-cat="Symposium">💡 Symposium</button>
+          <button class="category-pill" data-cat="Clubs">👥 Clubs</button>
+          <button class="category-pill" data-cat="Competition">⚡ Competitions</button>
+          <button class="category-pill" data-cat="Placement">💼 Placement</button>
+        </div>
+
+        <!-- Featured Event -->
+        <div class="section-header">
+          <div class="section-title">Featured</div>
+        </div>
+        <div class="featured-event" onclick="openEventDetail('evt1')">
+          <div class="featured-badge">⭐ Featured Event</div>
+          <div class="featured-title">Tech Symposium 2026</div>
+          <div class="featured-meta">
+            <div class="featured-row"><span>📅</span> <span class="featured-date">September 12, 2026</span></div>
+            <div class="featured-row"><span>🕐</span> <span class="featured-time">10:00 AM</span></div>
+            <div class="featured-row"><span>📍</span> <span class="featured-loc">Main Auditorium</span></div>
+          </div>
+          <button class="btn" style="background:rgba(255,255,255,0.25);color:white;width:auto;height:40px;padding:0 20px;border-radius:10px;font-size:14px;font-weight:600;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3)">View Details →</button>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="section-header">
+          <div class="section-title">Upcoming Events</div>
+          <span class="section-see-all">See All</span>
+        </div>
+        <div class="events-scroll" id="events-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Announcements Preview -->
+        <div class="section-header mt-20">
+          <div class="section-title">Latest Announcements</div>
+          <span class="section-see-all" onclick="initAnnouncementsScreen();showScreen('announcements-screen')">See All</span>
+        </div>
+        <div id="home-ann-preview"></div>
+
+        <div style="height:80px"></div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <nav class="bottom-nav">
+        <button class="nav-item active" id="nav-home">
+          <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" id="nav-explore">
+          <span class="nav-icon">🔭</span><span class="nav-label">Explore</span>
+        </button>
+        <button class="nav-item" id="nav-myevents">
+          <span class="nav-icon">📋</span><span class="nav-label">My Events</span>
+        </button>
+        <button class="nav-item" id="nav-notifications">
+          <span class="nav-icon">🔔</span><span class="nav-label">Alerts</span>
+        </button>
+        <button class="nav-item" id="nav-profile">
+          <span class="nav-icon">👤</span><span class="nav-label">Profile</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 5: EVENT DETAIL                                   -->
+    <!-- ======================================================== -->
+    <div class="screen" id="event-detail-screen">
+      <div class="event-banner" id="detail-banner">
+        <div class="event-banner-bg-anim"></div>
+        <button class="event-banner-back" onclick="goBack()">←</button>
+        <div id="detail-banner-emoji" style="font-size:64px;position:relative;z-index:2"></div>
+        <div class="event-banner-overlay"></div>
+      </div>
+
+      <div class="screen-content event-detail-content">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <span class="badge badge-open" id="detail-category">Symposium</span>
+          <span class="badge badge-registered" style="display:none" id="detail-reg-badge">✅ Registered</span>
+        </div>
+        <div class="event-detail-title" id="detail-title">Tech Symposium 2026</div>
+
+        <!-- Info Block -->
+        <div class="event-detail-info">
+          <div class="event-info-row">
+            <div class="event-info-icon">📅</div>
+            <div>
+              <div class="event-info-label">Date</div>
+              <div class="event-info-value" id="detail-date"></div>
+            </div>
+          </div>
+          <div class="event-info-row">
+            <div class="event-info-icon">🕐</div>
+            <div>
+              <div class="event-info-label">Time</div>
+              <div class="event-info-value" id="detail-time"></div>
+            </div>
+          </div>
+          <div class="event-info-row">
+            <div class="event-info-icon">📍</div>
+            <div>
+              <div class="event-info-label">Location</div>
+              <div class="event-info-value" id="detail-location"></div>
+            </div>
+          </div>
+          <div class="event-info-row">
+            <div class="event-info-icon">🏛️</div>
+            <div>
+              <div class="event-info-label">Organizer</div>
+              <div class="event-info-value" id="detail-organizer"></div>
+            </div>
+          </div>
+          <div class="event-info-row">
+            <div class="event-info-icon">⏰</div>
+            <div>
+              <div class="event-info-label">Registration Deadline</div>
+              <div class="event-info-value" id="detail-deadline"></div>
+            </div>
+          </div>
+          <div class="event-info-row">
+            <div class="event-info-icon">👥</div>
+            <div>
+              <div class="event-info-label">Participants</div>
+              <div class="event-info-value" id="detail-participants"></div>
+            </div>
+          </div>
+          <div class="event-info-row">
+            <div class="event-info-icon">📞</div>
+            <div>
+              <div class="event-info-label">Contact</div>
+              <div class="event-info-value" id="detail-contact"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="event-description">
+          <div class="event-desc-title">About This Event</div>
+          <div class="event-desc-text" id="detail-description"></div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="event-description">
+          <div class="event-desc-title">Event Schedule</div>
+          <div id="detail-schedule"></div>
+        </div>
+
+        <div style="height:100px"></div>
+      </div>
+
+      <!-- Sticky Footer Actions -->
+      <div class="event-detail-footer">
+        <button class="btn btn-outline" style="flex:1;height:48px" onclick="alert('Added to calendar! (demo)')">📅 Calendar</button>
+        <button class="btn btn-primary" style="flex:2;height:48px" id="detail-register-btn" onclick="showScreen('register-screen');initRegisterScreen()">Register Now</button>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 6: EVENT REGISTRATION                             -->
+    <!-- ======================================================== -->
+    <div class="screen" id="register-screen">
+      <div class="screen-header">
+        <button class="header-back-btn" onclick="goBack()">←</button>
+        <span class="header-title">Register for Event</span>
+      </div>
+      <div class="screen-content form-section">
+        <!-- Event Preview -->
+        <div class="register-event-preview">
+          <div class="register-event-emoji" id="reg-event-emoji">💻</div>
+          <div>
+            <div class="register-event-name" id="reg-event-name">Tech Symposium 2026</div>
+            <div class="register-event-date" id="reg-event-date">September 12, 2026 · 10:00 AM</div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">Student Name</div>
+          <div class="input-with-icon">
+            <span class="input-icon">👤</span>
+            <input id="reg-name" class="input-field" type="text" placeholder="Your full name" value="Vishnu S" />
+          </div>
+          <div class="error-text" id="reg-name-err" style="display:none"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">College Email</div>
+          <div class="input-with-icon">
+            <span class="input-icon">📧</span>
+            <input id="reg-email" class="input-field" type="email" placeholder="you@college.edu" value="vishnu@college.edu" />
+          </div>
+          <div class="error-text" id="reg-email-err" style="display:none"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">Department</div>
+          <div class="input-with-icon">
+            <span class="input-icon">🏛️</span>
+            <input id="reg-dept" class="input-field" type="text" placeholder="e.g. Computer Science" value="Computer Science & Engineering" />
+          </div>
+          <div class="error-text" id="reg-dept-err" style="display:none"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">Year of Study</div>
+          <select id="reg-year" class="select-field">
+            <option value="">Select Year</option>
+            <option value="1" selected>3rd Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label">Phone Number</div>
+          <div class="input-with-icon">
+            <span class="input-icon">📱</span>
+            <input id="reg-phone" class="input-field" type="tel" placeholder="+91 98765 43210" value="+91 98765 43210" />
+          </div>
+          <div class="error-text" id="reg-phone-err" style="display:none"></div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="reg-agree" checked />
+          <label class="checkbox-label" for="reg-agree">I agree to the event guidelines and code of conduct.</label>
+        </div>
+        <div class="error-text" id="agree-err" style="display:none">Please agree to the event guidelines.</div>
+
+        <button class="btn btn-primary mt-16" onclick="submitRegistration()">Confirm Registration</button>
+        <div style="height:24px"></div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 7: REGISTRATION SUCCESS                           -->
+    <!-- ======================================================== -->
+    <div class="screen" id="success-screen">
+      <div class="screen-header">
+        <button class="header-back-btn" onclick="showScreen('home-screen')">✕</button>
+        <span class="header-title">Registration Status</span>
+      </div>
+      <div class="screen-content" style="display:flex;flex-direction:column;align-items:center;padding:30px 20px;text-align:center">
+        <div class="success-animation">
+          <div class="success-circle">✅</div>
+          <div class="success-ring"></div>
+        </div>
+        <div class="success-title">Registration Successful! 🎉</div>
+        <div class="success-subtitle">You are successfully registered for <strong id="success-event-name">Tech Symposium 2026</strong>.</div>
+
+        <div class="success-card">
+          <div class="success-card-title">Event Details</div>
+          <div class="success-detail-row">
+            <span class="success-detail-label">📅 Date</span>
+            <span class="success-detail-value" id="success-date"></span>
+          </div>
+          <div class="success-detail-row">
+            <span class="success-detail-label">🕐 Time</span>
+            <span class="success-detail-value" id="success-time"></span>
+          </div>
+          <div class="success-detail-row">
+            <span class="success-detail-label">📍 Location</span>
+            <span class="success-detail-value" id="success-location"></span>
+          </div>
+          <div class="success-id">
+            <div class="success-id-label">Your Registration ID</div>
+            <div class="success-id-value" id="success-reg-id">CC-2026-4821</div>
+          </div>
+        </div>
+
+        <div class="success-buttons">
+          <button class="btn btn-primary" onclick="initMyEventsScreen();showScreen('my-events-screen')">📋 View My Events</button>
+          <button class="btn btn-outline" onclick="showScreen('home-screen')">🏠 Back to Home</button>
+        </div>
+        <div style="height:40px"></div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 8: MY EVENTS                                      -->
+    <!-- ======================================================== -->
+    <div class="screen" id="my-events-screen">
+      <div class="screen-header">
+        <button class="header-back-btn" onclick="goBack()">←</button>
+        <span class="header-title">My Events</span>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active" data-tab="upcoming">Upcoming</div>
+        <div class="tab-item" data-tab="completed">Completed</div>
+      </div>
+      <div class="screen-content" style="padding:16px;display:flex;flex-direction:column;gap:12px" id="my-events-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 9: ANNOUNCEMENTS                                  -->
+    <!-- ======================================================== -->
+    <div class="screen" id="announcements-screen">
+      <div class="ann-header">
+        <div class="home-header-top">
+          <div>
+            <div class="ann-header-title">Announcements 📢</div>
+            <div class="ann-header-sub">Stay updated with campus news</div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-content ann-content">
+        <div class="ann-categories">
+          <button class="ann-cat-pill active" data-cat="All">All</button>
+          <button class="ann-cat-pill" data-cat="General">General</button>
+          <button class="ann-cat-pill" data-cat="Academics">Academics</button>
+          <button class="ann-cat-pill" data-cat="Placement">Placement</button>
+          <button class="ann-cat-pill" data-cat="Events">Events</button>
+          <button class="ann-cat-pill" data-cat="Clubs">Clubs</button>
+        </div>
+        <div class="ann-list" id="ann-list">
+          <!-- Populated by JS -->
+        </div>
+        <div style="height:24px"></div>
+      </div>
+      <nav class="bottom-nav">
+        <button class="nav-item" onclick="showScreen('home-screen')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+        <button class="nav-item active"><span class="nav-icon">🔭</span><span class="nav-label">Explore</span></button>
+        <button class="nav-item" onclick="initMyEventsScreen();showScreen('my-events-screen')"><span class="nav-icon">📋</span><span class="nav-label">My Events</span></button>
+        <button class="nav-item" onclick="initNotificationsScreen();showScreen('notifications-screen')"><span class="nav-icon">🔔</span><span class="nav-label">Alerts</span></button>
+        <button class="nav-item" onclick="showScreen('profile-screen')"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></button>
+      </nav>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 10: CLUBS                                         -->
+    <!-- ======================================================== -->
+    <div class="screen" id="clubs-screen">
+      <div class="clubs-header">
+        <div class="home-header-top">
+          <div>
+            <div class="ann-header-title">Clubs & Communities 👥</div>
+            <div class="ann-header-sub">Find your community on campus</div>
+          </div>
+        </div>
+        <div class="search-bar" style="margin-top:0">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search clubs..." />
+        </div>
+      </div>
+      <div class="screen-content ann-content">
+        <div class="clubs-grid" id="clubs-grid">
+          <!-- Populated by JS -->
+        </div>
+        <div style="height:80px"></div>
+      </div>
+      <nav class="bottom-nav">
+        <button class="nav-item" onclick="showScreen('home-screen')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+        <button class="nav-item active"><span class="nav-icon">🔭</span><span class="nav-label">Explore</span></button>
+        <button class="nav-item" onclick="initMyEventsScreen();showScreen('my-events-screen')"><span class="nav-icon">📋</span><span class="nav-label">My Events</span></button>
+        <button class="nav-item" onclick="initNotificationsScreen();showScreen('notifications-screen')"><span class="nav-icon">🔔</span><span class="nav-label">Alerts</span></button>
+        <button class="nav-item" onclick="showScreen('profile-screen')"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></button>
+      </nav>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 11: PROFILE                                       -->
+    <!-- ======================================================== -->
+    <div class="screen" id="profile-screen">
+      <div class="profile-hero">
+        <div class="profile-avatar">😊</div>
+        <div class="profile-name">Vishnu S</div>
+        <div class="profile-dept">Computer Science & Engineering · 3rd Year</div>
+        <div class="profile-id-tag">Student ID: 21CS001</div>
+        <div class="profile-info-bar">
+          <div class="profile-info-item">
+            <div class="profile-info-val">3</div>
+            <div class="profile-info-label">Events</div>
+          </div>
+          <div class="profile-info-item">
+            <div class="profile-info-val">2</div>
+            <div class="profile-info-label">Clubs</div>
+          </div>
+          <div class="profile-info-item">
+            <div class="profile-info-val">8</div>
+            <div class="profile-info-label">Badges</div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-content profile-content">
+        <!-- Profile Info Card -->
+        <div class="profile-menu-section">
+          <div class="profile-menu-item">
+            <div class="profile-menu-icon">📧</div>
+            <div style="flex:1">
+              <div style="font-size:11px;color:var(--text-tertiary)">Email</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text-primary)">vishnu@college.edu</div>
+            </div>
+          </div>
+          <div class="profile-menu-item">
+            <div class="profile-menu-icon">🆔</div>
+            <div style="flex:1">
+              <div style="font-size:11px;color:var(--text-tertiary)">Student ID</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text-primary)">21CS001</div>
+            </div>
+          </div>
+          <div class="profile-menu-item">
+            <div class="profile-menu-icon">🏛️</div>
+            <div style="flex:1">
+              <div style="font-size:11px;color:var(--text-tertiary)">Department</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text-primary)">Computer Science & Engg.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Actions -->
+        <div class="profile-menu-section">
+          <div class="profile-menu-item" onclick="initMyEventsScreen();showScreen('my-events-screen')">
+            <div class="profile-menu-icon">📋</div>
+            <div class="profile-menu-label">My Events</div>
+            <div class="profile-menu-arrow">›</div>
+          </div>
+          <div class="profile-menu-item" onclick="initClubsScreen();showScreen('clubs-screen')">
+            <div class="profile-menu-icon">👥</div>
+            <div class="profile-menu-label">My Clubs</div>
+            <div class="profile-menu-arrow">›</div>
+          </div>
+          <div class="profile-menu-item" onclick="initNotificationsScreen();showScreen('notifications-screen')">
+            <div class="profile-menu-icon">🔔</div>
+            <div class="profile-menu-label">Notifications</div>
+            <div class="profile-menu-arrow">›</div>
+          </div>
+          <div class="profile-menu-item" onclick="alert('Settings — Coming soon! (demo)')">
+            <div class="profile-menu-icon">⚙️</div>
+            <div class="profile-menu-label">Settings</div>
+            <div class="profile-menu-arrow">›</div>
+          </div>
+          <div class="profile-menu-item" onclick="alert('Help & Support — Coming soon! (demo)')">
+            <div class="profile-menu-icon">❓</div>
+            <div class="profile-menu-label">Help & Support</div>
+            <div class="profile-menu-arrow">›</div>
+          </div>
+        </div>
+
+        <div class="profile-menu-section">
+          <div class="profile-menu-item danger" onclick="showScreen('login-screen');screenHistory=[]">
+            <div class="profile-menu-icon">🚪</div>
+            <div class="profile-menu-label">Logout</div>
+            <div class="profile-menu-arrow">›</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:16px 0 80px;font-size:12px;color:var(--text-tertiary)">
+          CampusConnect v1.0 · Made with ❤️ for students
+        </div>
+      </div>
+      <nav class="bottom-nav">
+        <button class="nav-item" onclick="showScreen('home-screen')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+        <button class="nav-item" onclick="initAnnouncementsScreen();showScreen('announcements-screen')"><span class="nav-icon">🔭</span><span class="nav-label">Explore</span></button>
+        <button class="nav-item" onclick="initMyEventsScreen();showScreen('my-events-screen')"><span class="nav-icon">📋</span><span class="nav-label">My Events</span></button>
+        <button class="nav-item" onclick="initNotificationsScreen();showScreen('notifications-screen')"><span class="nav-icon">🔔</span><span class="nav-label">Alerts</span></button>
+        <button class="nav-item active"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></button>
+      </nav>
+    </div>
+
+    <!-- ======================================================== -->
+    <!--  SCREEN 12: NOTIFICATIONS                                 -->
+    <!-- ======================================================== -->
+    <div class="screen" id="notifications-screen">
+      <div class="screen-header">
+        <button class="header-back-btn" onclick="goBack()">←</button>
+        <span class="header-title">Notifications</span>
+        <button class="header-action" onclick="alert('All marked as read! (demo)')">✓</button>
+      </div>
+      <div class="screen-content" style="padding:16px;display:flex;flex-direction:column;gap:10px" id="notifications-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+  </div><!-- /#app-shell -->
+</div><!-- /#phone-frame -->
+
+<script src="app.js"></script>
+<script>
+  // Live clock in status bar
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    document.getElementById('status-time').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 60000);
+
+  // Init announcement preview on home
+  document.addEventListener('DOMContentLoaded', () => {
+    const preview = document.getElementById('home-ann-preview');
+    if (preview) {
+      ANNOUNCEMENTS.slice(0,2).forEach(ann => {
+        preview.appendChild(renderAnnCard(ann));
+        preview.lastChild.style.marginBottom = '10px';
+      });
+    }
+  });
+</script>
+</body>
+</html>
